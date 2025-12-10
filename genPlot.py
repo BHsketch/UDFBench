@@ -37,7 +37,7 @@ def plot_grouped_bars(file_path):
 
     ax.set_xlabel('Benchmark', fontsize=18)
     ax.set_ylabel('Time Taken (s)', fontsize=18)
-    ax.set_title('Manual Vectorization Performance', fontsize=20)
+    ax.set_title('Comparing UDF Implementations', fontsize=20)
     ax.set_xticks(x + bar_width * (num_members - 1) / 2)
     ax.set_xticklabels(x_labels, fontsize=16)
     ax.legend()

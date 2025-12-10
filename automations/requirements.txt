@@ -13,3 +13,4 @@ sphinx
 pyspark==3.5.5
 py4j==0.10.9.7
 gdown
+matplotlib
