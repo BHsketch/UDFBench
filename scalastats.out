@@ -1,0 +1,490 @@
+Loading event log: spark-events/app-20251120084847-0002
+Loaded 114 events
+
+================================================================================
+APPLICATION SUMMARY
+================================================================================
+App Name: UDFBench
+App ID: app-20251120084847-0002
+User: root
+Spark Version: Unknown
+Started: 2025-11-20 02:48:46.901000
+Ended: 2025-11-20 02:48:57.883000
+Duration: 10.98s
+
+Jobs: 12
+Stages: 12
+Tasks: 18
+Executors: 1
+
+================================================================================
+JOBS SUMMARY
+================================================================================
+
+Job 0: JobSucceeded
+  Stages: 1
+  Duration: 1.47s
+  Stage IDs: [0]
+
+Job 1: JobSucceeded
+  Stages: 1
+  Duration: 0.08s
+  Stage IDs: [1]
+
+Job 2: JobSucceeded
+  Stages: 1
+  Duration: 0.12s
+  Stage IDs: [2]
+
+Job 3: JobSucceeded
+  Stages: 1
+  Duration: 0.04s
+  Stage IDs: [3]
+
+Job 4: JobSucceeded
+  Stages: 1
+  Duration: 0.05s
+  Stage IDs: [4]
+
+Job 5: JobSucceeded
+  Stages: 1
+  Duration: 0.06s
+  Stage IDs: [5]
+
+Job 6: JobSucceeded
+  Stages: 1
+  Duration: 0.04s
+  Stage IDs: [6]
+
+Job 7: JobSucceeded
+  Stages: 1
+  Duration: 0.05s
+  Stage IDs: [7]
+
+Job 8: JobSucceeded
+  Stages: 1
+  Duration: 1.76s
+  Stage IDs: [8]
+
+Job 9: JobSucceeded
+  Stages: 2
+  Duration: 0.99s
+  Stage IDs: [9, 10]
+
+Job 10: JobSucceeded
+  Stages: 1
+  Duration: 0.24s
+  Stage IDs: [11]
+
+Job 11: JobSucceeded
+  Stages: 2
+  Duration: 0.12s
+  Stage IDs: [12, 13]
+
+================================================================================
+STAGES SUMMARY
+================================================================================
+
+Stage 0: parquet at NativeMethodAccessorImpl.java:0
+  Tasks: 1
+  Duration: 1.44s
+  Total Task Time: 0.28s
+  GC Time: 0.01s (3.9%)
+  Input: 0.00 MB
+  Output: 0.00 MB
+
+Stage 1: parquet at NativeMethodAccessorImpl.java:0
+  Tasks: 1
+  Duration: 0.08s
+  Total Task Time: 0.02s
+  GC Time: 0.00s (0.0%)
+  Input: 0.00 MB
+  Output: 0.00 MB
+
+Stage 2: parquet at NativeMethodAccessorImpl.java:0
+  Tasks: 1
+  Duration: 0.11s
+  Total Task Time: 0.02s
+  GC Time: 0.00s (0.0%)
+  Input: 0.00 MB
+  Output: 0.00 MB
+
+Stage 3: parquet at NativeMethodAccessorImpl.java:0
+  Tasks: 1
+  Duration: 0.04s
+  Total Task Time: 0.00s
+  GC Time: 0.00s (0.0%)
+  Input: 0.00 MB
+  Output: 0.00 MB
+
+Stage 4: parquet at NativeMethodAccessorImpl.java:0
+  Tasks: 1
+  Duration: 0.05s
+  Total Task Time: 0.01s
+  GC Time: 0.00s (0.0%)
+  Input: 0.00 MB
+  Output: 0.00 MB
+
+Stage 5: parquet at NativeMethodAccessorImpl.java:0
+  Tasks: 1
+  Duration: 0.06s
+  Total Task Time: 0.01s
+  GC Time: 0.00s (20.0%)
+  Input: 0.00 MB
+  Output: 0.00 MB
+
+Stage 6: parquet at NativeMethodAccessorImpl.java:0
+  Tasks: 1
+  Duration: 0.04s
+  Total Task Time: 0.00s
+  GC Time: 0.00s (0.0%)
+  Input: 0.00 MB
+  Output: 0.00 MB
+
+Stage 7: parquet at NativeMethodAccessorImpl.java:0
+  Tasks: 1
+  Duration: 0.05s
+  Total Task Time: 0.01s
+  GC Time: 0.00s (0.0%)
+  Input: 0.00 MB
+  Output: 0.00 MB
+
+Stage 8: javaToPython at NativeMethodAccessorImpl.java:0
+  Tasks: 4
+  Duration: 1.75s
+  Total Task Time: 5.35s
+  GC Time: 0.13s (2.5%)
+  Input: 0.43 MB
+  Output: 0.00 MB
+
+Stage 10: foreach at /app/engines/pyspark/queries/exec.py:144
+  Tasks: 1
+  Duration: 0.99s
+  Total Task Time: 0.80s
+  GC Time: 0.01s (1.1%)
+  Input: 0.00 MB
+  Output: 0.00 MB
+
+Stage 11: showString at NativeMethodAccessorImpl.java:0
+  Tasks: 4
+  Duration: 0.24s
+  Total Task Time: 0.35s
+  GC Time: 0.03s (9.0%)
+  Input: 0.43 MB
+  Output: 0.00 MB
+
+Stage 13: showString at NativeMethodAccessorImpl.java:0
+  Tasks: 1
+  Duration: 0.12s
+  Total Task Time: 0.06s
+  GC Time: 0.00s (5.0%)
+  Input: 0.00 MB
+  Output: 0.00 MB
+
+================================================================================
+TASKS SUMMARY
+================================================================================
+
+Stage 0:
+  Tasks: 1
+  Failed: 0
+
+  Timing Breakdown (total across all tasks):
+    Deserialize Time:           0.29s
+    Executor Run Time:          0.28s
+    Serialize Time:             0.00s
+    GC Time:                    0.01s
+
+  Overhead Percentage:
+    Deserialization:           101.8%
+    Serialization:               0.7%
+    GC:                          3.9%
+    Total Overhead:            106.4%
+
+  Data Metrics:
+    Input:                      0.00 MB
+    Output:                     0.00 MB
+    Shuffle Read:               0.00 MB
+    Shuffle Write:              0.00 MB
+    Memory Spilled:             0.00 MB
+    Disk Spilled:               0.00 MB
+
+Stage 1:
+  Tasks: 1
+  Failed: 0
+
+  Timing Breakdown (total across all tasks):
+    Deserialize Time:           0.02s
+    Executor Run Time:          0.02s
+    Serialize Time:             0.00s
+    GC Time:                    0.00s
+
+  Overhead Percentage:
+    Deserialization:           143.8%
+    Serialization:               0.0%
+    GC:                          0.0%
+    Total Overhead:            143.8%
+
+  Data Metrics:
+    Input:                      0.00 MB
+    Output:                     0.00 MB
+    Shuffle Read:               0.00 MB
+    Shuffle Write:              0.00 MB
+    Memory Spilled:             0.00 MB
+    Disk Spilled:               0.00 MB
+
+Stage 2:
+  Tasks: 1
+  Failed: 0
+
+  Timing Breakdown (total across all tasks):
+    Deserialize Time:           0.05s
+    Executor Run Time:          0.02s
+    Serialize Time:             0.00s
+    GC Time:                    0.00s
+
+  Overhead Percentage:
+    Deserialization:           219.0%
+    Serialization:              14.3%
+    GC:                          0.0%
+    Total Overhead:            233.3%
+
+  Data Metrics:
+    Input:                      0.00 MB
+    Output:                     0.00 MB
+    Shuffle Read:               0.00 MB
+    Shuffle Write:              0.00 MB
+    Memory Spilled:             0.00 MB
+    Disk Spilled:               0.00 MB
+
+Stage 3:
+  Tasks: 1
+  Failed: 0
+
+  Timing Breakdown (total across all tasks):
+    Deserialize Time:           0.01s
+    Executor Run Time:          0.00s
+    Serialize Time:             0.00s
+    GC Time:                    0.00s
+
+  Overhead Percentage:
+    Deserialization:           350.0%
+    Serialization:               0.0%
+    GC:                          0.0%
+    Total Overhead:            350.0%
+
+  Data Metrics:
+    Input:                      0.00 MB
+    Output:                     0.00 MB
+    Shuffle Read:               0.00 MB
+    Shuffle Write:              0.00 MB
+    Memory Spilled:             0.00 MB
+    Disk Spilled:               0.00 MB
+
+Stage 4:
+  Tasks: 1
+  Failed: 0
+
+  Timing Breakdown (total across all tasks):
+    Deserialize Time:           0.02s
+    Executor Run Time:          0.01s
+    Serialize Time:             0.00s
+    GC Time:                    0.00s
+
+  Overhead Percentage:
+    Deserialization:           154.5%
+    Serialization:               0.0%
+    GC:                          0.0%
+    Total Overhead:            154.5%
+
+  Data Metrics:
+    Input:                      0.00 MB
+    Output:                     0.00 MB
+    Shuffle Read:               0.00 MB
+    Shuffle Write:              0.00 MB
+    Memory Spilled:             0.00 MB
+    Disk Spilled:               0.00 MB
+
+Stage 5:
+  Tasks: 1
+  Failed: 0
+
+  Timing Breakdown (total across all tasks):
+    Deserialize Time:           0.02s
+    Executor Run Time:          0.01s
+    Serialize Time:             0.00s
+    GC Time:                    0.00s
+
+  Overhead Percentage:
+    Deserialization:           160.0%
+    Serialization:               0.0%
+    GC:                         20.0%
+    Total Overhead:            180.0%
+
+  Data Metrics:
+    Input:                      0.00 MB
+    Output:                     0.00 MB
+    Shuffle Read:               0.00 MB
+    Shuffle Write:              0.00 MB
+    Memory Spilled:             0.00 MB
+    Disk Spilled:               0.00 MB
+
+Stage 6:
+  Tasks: 1
+  Failed: 0
+
+  Timing Breakdown (total across all tasks):
+    Deserialize Time:           0.01s
+    Executor Run Time:          0.00s
+    Serialize Time:             0.00s
+    GC Time:                    0.00s
+
+  Overhead Percentage:
+    Deserialization:           325.0%
+    Serialization:               0.0%
+    GC:                          0.0%
+    Total Overhead:            325.0%
+
+  Data Metrics:
+    Input:                      0.00 MB
+    Output:                     0.00 MB
+    Shuffle Read:               0.00 MB
+    Shuffle Write:              0.00 MB
+    Memory Spilled:             0.00 MB
+    Disk Spilled:               0.00 MB
+
+Stage 7:
+  Tasks: 1
+  Failed: 0
+
+  Timing Breakdown (total across all tasks):
+    Deserialize Time:           0.01s
+    Executor Run Time:          0.01s
+    Serialize Time:             0.00s
+    GC Time:                    0.00s
+
+  Overhead Percentage:
+    Deserialization:           125.0%
+    Serialization:               0.0%
+    GC:                          0.0%
+    Total Overhead:            125.0%
+
+  Data Metrics:
+    Input:                      0.00 MB
+    Output:                     0.00 MB
+    Shuffle Read:               0.00 MB
+    Shuffle Write:              0.00 MB
+    Memory Spilled:             0.00 MB
+    Disk Spilled:               0.00 MB
+
+Stage 8:
+  Tasks: 4
+  Failed: 0
+
+  Timing Breakdown (total across all tasks):
+    Deserialize Time:           1.33s
+    Executor Run Time:          5.35s
+    Serialize Time:             0.00s
+    GC Time:                    0.13s
+
+  Overhead Percentage:
+    Deserialization:            24.9%
+    Serialization:               0.1%
+    GC:                          2.5%
+    Total Overhead:             27.5%
+
+  Data Metrics:
+    Input:                      0.43 MB
+    Output:                     0.00 MB
+    Shuffle Read:               0.00 MB
+    Shuffle Write:              0.00 MB
+    Memory Spilled:             0.00 MB
+    Disk Spilled:               0.00 MB
+
+Stage 10:
+  Tasks: 1
+  Failed: 0
+
+  Timing Breakdown (total across all tasks):
+    Deserialize Time:           0.14s
+    Executor Run Time:          0.80s
+    Serialize Time:             0.01s
+    GC Time:                    0.01s
+
+  Overhead Percentage:
+    Deserialization:            18.1%
+    Serialization:               1.1%
+    GC:                          1.1%
+    Total Overhead:             20.3%
+
+  Data Metrics:
+    Input:                      0.00 MB
+    Output:                     0.00 MB
+    Shuffle Read:               0.00 MB
+    Shuffle Write:              0.00 MB
+    Memory Spilled:             0.00 MB
+    Disk Spilled:               0.00 MB
+
+Stage 11:
+  Tasks: 4
+  Failed: 0
+
+  Timing Breakdown (total across all tasks):
+    Deserialize Time:           0.20s
+    Executor Run Time:          0.35s
+    Serialize Time:             0.01s
+    GC Time:                    0.03s
+
+  Overhead Percentage:
+    Deserialization:            56.6%
+    Serialization:               3.2%
+    GC:                          9.0%
+    Total Overhead:             68.8%
+
+  Data Metrics:
+    Input:                      0.43 MB
+    Output:                     0.00 MB
+    Shuffle Read:               0.00 MB
+    Shuffle Write:              0.00 MB
+    Memory Spilled:             0.00 MB
+    Disk Spilled:               0.00 MB
+
+Stage 13:
+  Tasks: 1
+  Failed: 0
+
+  Timing Breakdown (total across all tasks):
+    Deserialize Time:           0.03s
+    Executor Run Time:          0.06s
+    Serialize Time:             0.00s
+    GC Time:                    0.00s
+
+  Overhead Percentage:
+    Deserialization:            43.3%
+    Serialization:               1.7%
+    GC:                          5.0%
+    Total Overhead:             50.0%
+
+  Data Metrics:
+    Input:                      0.00 MB
+    Output:                     0.00 MB
+    Shuffle Read:               0.00 MB
+    Shuffle Write:              0.00 MB
+    Memory Spilled:             0.00 MB
+    Disk Spilled:               0.00 MB
+
+================================================================================
+EXECUTORS SUMMARY
+================================================================================
+
+Executor 0: Active
+  Host: 172.18.0.3
+  Cores: 4
+  Tasks Executed: 18
+  Total Task Time: 6.93s
+  GC Time: 0.19s (2.7%)
+Exported tasks to spark_metrics/spark_tasks.csv
+Exported stages to spark_metrics/spark_stages.csv
+Exported jobs to spark_metrics/spark_jobs.csv
+
+Metrics exported to spark_metrics/ directory

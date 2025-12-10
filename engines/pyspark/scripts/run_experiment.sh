@@ -102,6 +102,8 @@ for query_file in "${arr[@]}"; do
         collectl -f "$PYSPARKRESULTSPATH/collectl/$filename" -scdnm -F0 -i.1 &
         COLLECTL_PID=$!
     fi
+	echo "pysparkpath: $PYSPARKPATH"
+	echo "pyspark udfs: $PYSPARKUDFS"
     "$PYTHONEXEC" "$PYSPARKPATH" --pyspark-schema "$PYSPARKSCRIPTS" --pyspark-loads "$PYSPARKSCRIPTS" --pyspark-parquet "$PARQUETPATH/$DATAB" --pyspark-udfs "$PYSPARKUDFS"  --pyspark-sql  "$query_file"  &> "$PYSPARKRESULTSPATH/experiments/$filename".txt
     if  [ $COLLECTL = "true" ]; then 
         kill $COLLECTL_PID

@@ -1,1 +1,1 @@
-select aggregate_avg(authors), aggregate_median(authors) from artifacts; 
+select aggregate_avg(authors) from artifacts; 

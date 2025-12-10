@@ -1,5 +1,6 @@
 dataset
 databases
+spark-events/*
 engines/pyspark/scripts/__pycache__/
 engines/pyspark/udfs/aggregate/__pycache__/
 engines/pyspark/udfs/scalar/__pycache__/

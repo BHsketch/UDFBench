@@ -72,6 +72,26 @@ def createfunctions(spark,UDFs,UDAFs,UDTFs):
         # Table UDFs
 
         spark.udtf.register("extractfromdate", UDTFs["extractfromdate"].ExtractFromDate)
+        # BHsketch S ---
+        spark.udf.register("extractfromdateMod1", UDTFs["extractfromdateMod1"].extractFromDateMod1)
+        schemaQ2Scala = StructType([
+            StructField("year", IntegerType()),
+            StructField("month", IntegerType()),
+            StructField("day", IntegerType())
+            ])
+
+        spark.udf.registerJavaFunction("extractFromDateScala", "com.example.scalaudfs.ExtractFromDateScala", schemaQ2Scala)
+
+        # spark.udf.register("AggregateAvgScala", new UdafClass())
+        # spark.udf.registerJavaFunction("AggregateAvgScala", "com.example.scalaudfs.AggregateAvgScala")
+
+        # agg_avg = spark._jvm.com.example.scalaudfs.AggregateAvgScala.udafInstance()
+        # spark.udf.registerJavaFunction("AggregateAvgScala", agg_avg)
+
+        ### try n
+        spark._jvm.com.example.scalaudfs.UDAFRegistration.registerUDAFs(spark._jsparkSession)
+
+        # BHsketch E ---
         spark.udtf.register("jsonparse", UDTFs["jsonparse"].JsonParse)
         spark.udtf.register("combinations", UDTFs["combinations"].Combinations)
         spark.udtf.register("combinations_q16", UDTFs["combinations_q16"].Combinations_q16)
@@ -108,8 +128,13 @@ def executeScriptsFromFile(filename, conn,output=False):
                         res.foreach(proceess_row)
                         if output:
                             print(res.show())
-                    except:
-                        print("Command skipped.")
+                    # except:
+                        # print("Command skipped.")
+                    except Exception as e:
+                        print(f"Command skipped due to error: {e}")
+                        import traceback
+                        traceback.print_exc()
+                        sys.exit(2)
         else:
             try:
                        
@@ -120,8 +145,12 @@ def executeScriptsFromFile(filename, conn,output=False):
                 if output:
                     print(res.show())
 
-            except:        
-                print("Command skipped.")
+            except Exception as e:        
+                # print("Command skipped.")
+                print(f"Command skipped due to error: {e}")
+                import traceback
+                traceback.print_exc()
+
     except FileNotFoundError:
         print("Wrong arguments. Please check the file path.")
         sys.exit(2)
@@ -165,7 +194,7 @@ if __name__ == "__main__":
 
     args = parser.parse_args()
     run_pyspark = False
-    print_results = False
+    print_results = True
     
     if args.pyspark_sql:
 
@@ -212,8 +241,31 @@ if __name__ == "__main__":
 
                 spark = SparkSession.builder.appName("UDFBench") \
                     .master("spark://spark:7077") \
-                    .config("spark.jars", "/jars/ScalaUDFjarfile.jar,/jars/JavaUDFjarfile.jar") \
-                    .config("spark.driver.memory","58g").getOrCreate()
+                    .config("spark.jars", "./jars/ScalaUDFjarfile.jar,./jars/JavaUDFjarfile.jar,./jars/ScalaUDFjarfileTable.jar,./jars/ScalaUDFjarfileAggregate.jar") \
+                    .config("spark.eventLog.enabled", "true") \
+                    .config("spark.eventLog.dir", "/tmp/spark-events") \
+                    .config("spark.driver.memory","12g").getOrCreate()
+                    # .config("spark.jars", "/jars/ScalaUDFjarfile.jar,/jars/JavaUDFjarfile.jar,/jars/ScalaUDFjarfileTable.jar,/jars/ScalaUDFjarfileAggregate.jar") \
+                # .config("spark.sql.execution.arrow.pyspark.enabled", "true") \
+                # .config("spark.executor.extraJavaOptions", 
+                        # "-XX:+PrintGCDetails "
+                        # "-XX:+PrintGCTimeStamps "
+                        # "-XX:+PrintGCDateStamps "
+                        # "-Xloggc:/tmp/gc-logs/executor-gc-%t.log "
+                        # "-XX:+UseGCLogFileRotation "
+                        # "-XX:NumberOfGCLogFiles=10 "
+                        # "-XX:GCLogFileSize=10M "
+                        # "-XX:+UnlockDiagnosticVMOptions "
+                        # "-XX:+DebugNonSafepoints") \
+                # .config("spark.driver.extraJavaOptions",
+                        # "-XX:+PrintGCDetails "
+                        # "-XX:+PrintGCTimeStamps "
+                        # "-XX:+PrintGCDateStamps "
+                        # "-Xloggc:/tmp/gc-logs/driver-gc.log") \
+                # .config("spark.python.profile", "true") \
+                # .config("spark.python.profile.dump", "/tmp/python-profile") \
+                # .config("spark.sql.execution.arrow.maxRecordsPerBatch", "10000").getOrCreate()
+                # spark.conf.set("spark.sql.execution.arrow.pyspark.enabled", "true")
 
   
                 load_parquet_files(spark,PARQUET_PATH,schemas)

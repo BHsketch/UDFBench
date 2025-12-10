@@ -16,13 +16,16 @@ services:
       - .:/app  # Mount project files so PL/Python can access dataset files
 
   spark:
-    image: apache/spark:3.5.5-scala2.12-java17-python3-r-ubuntu
+    build:
+      context: .
+      dockerfile: Dockerfile.spark
     container_name: spark-cont
     hostname: spark-master
     command: >
       bash -c "
       export SPARK_MASTER_HOST=spark-master &&
       /opt/spark/sbin/start-master.sh &&
+      sleep 5 &&
       /opt/spark/sbin/start-worker.sh spark://spark-master:7077 &&
       tail -f /opt/spark/logs/spark-*-org.apache.spark.deploy.master.Master-*.out
       "
@@ -30,12 +33,25 @@ services:
       - "7077:7077"   # Spark master port
       - "8080:8080"   # Spark master web UI
       - "8081:8081"   # Spark worker web UI
+      - "4040:4040"   # Spark application UI (for active jobs)
+      - "18080:18080" # Spark history server
     volumes:
       - .:/app        # Mount the project directory so Spark can access data files
+      #- ./jars:/jars/                   # For Scala UDF JARs
+      - ./spark-events:/tmp/spark-events          # Event logs for profiling
+      - ./gc-logs:/tmp/gc-logs                    # GC logs
+      - ./python-profile:/tmp/python-profile      # Python profiling output
     environment:
       - SPARK_WORKER_CORES=4
-      - SPARK_WORKER_MEMORY=60g
+      - SPARK_WORKER_MEMORY=12g
       - SPARK_MASTER_HOST=spark-master
+      # Enable event logging for profiling
+      - SPARK_EVENTLOG_ENABLED=true
+      - SPARK_EVENTLOG_DIR=/tmp/spark-events
+      - SPARK_HISTORY_OPTS=-Dspark.history.fs.logDirectory=/tmp/spark-events
+      #- SPARK_DAEMON_JAVA_OPTS=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -Xloggc:/tmp/gc-logs/spark-daemon-gc.log
+      #- SPARK_MASTER_OPTS=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -Xloggc:/tmp/gc-logs/spark-master-gc.log
+      #- SPARK_WORKER_OPTS=-XX:+PrintGCDetails -XX:+PrintGCTimeStamps -XX:+PrintGCDateStamps -Xloggc:/tmp/gc-logs/spark-worker-gc.log
 
   app:
     build:
@@ -47,6 +63,10 @@ services:
     privileged: true # Needed to drop the caches in run_experiment.sh
     volumes:
       - .:/app
+      #- ./jars:/jars                    # Share JARs with app
+      - ./spark-events:/tmp/spark-events          # Share event logs
+      - ./gc-logs:/tmp/gc-logs                    # Share GC logs
+      - ./python-profile:/tmp/python-profile      # Share Python profiles
     working_dir: /app
     environment:
       # Set Spark configuration for the app
@@ -54,3 +74,5 @@ services:
 
 volumes:
   pgdata:
+
+
