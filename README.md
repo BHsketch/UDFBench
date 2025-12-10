@@ -30,4 +30,4 @@ For running experiments related to the project:
 bash run-ape-experiments.sh
 ```
 
-This will run all necessary experiments in a sequence and output results in a file called `resultsAPE.out`.
+This will run all necessary experiments in a sequence and output logs in a file called `resultsAPE.out`. It will also ***automatically extract all values from the output and generate a graph similar to Figure 1 from the report as `stats_plot.png`.***
